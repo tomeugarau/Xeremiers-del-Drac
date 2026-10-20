@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repertori</title>
+<link rel="icon" id="favicon" href="data:,">
+<script src="configuracio.js"></script>
+<script src="repertori.js"></script>
+<script src="notes.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: una sola columna estreta; llista del repertori → vista de la peça amb les notes grans per tocar */
+:root {
+  --bg: #f2f3ec;
+  --surface: #fbfbf7;
+  --ink: #1d2a22;
+  --muted: #5e6b62;
+  --line: #d5d9cc;
+  --brand: #2c6a4c;   /* els colors reals venen de configuracio.js */
+  --brand2: #9a6b17;
+  --accent: var(--brand);
+  --accent-soft: color-mix(in srgb, var(--brand) 14%, #fbfbf7);
+  --ochre: var(--brand2);
+  --display: "Alegreya", Georgia, serif;
+  --body: "Alegreya Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --notes-size: 1.25rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a16; --surface: #1b231e; --ink: #e6ebe3; --muted: #9aa79e; --line: #2d3a32;
+    --accent: color-mix(in srgb, var(--brand) 55%, #ffffff); --accent-soft: color-mix(in srgb, var(--brand) 30%, #141a16); --ochre: color-mix(in srgb, var(--brand2) 60%, #ffffff); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a16; --surface: #1b231e; --ink: #e6ebe3; --muted: #9aa79e; --line: #2d3a32;
+  --accent: color-mix(in srgb, var(--brand) 55%, #ffffff); --accent-soft: color-mix(in srgb, var(--brand) 30%, #141a16); --ochre: color-mix(in srgb, var(--brand2) 60%, #ffffff); color-scheme: dark;
+}
+html { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 1.05rem; line-height: 1.5; }
+.wrap { max-width: 44rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; }
+h1, h2 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2rem, 6vw, 2.8rem); }
+h2 { font-size: clamp(1.7rem, 5vw, 2.3rem); }
+.eyebrow { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ochre); font-weight: 700; }
+.brand { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .8rem; text-align: center; color: inherit; text-decoration: none; }
+.group-name { font-family: var(--group-font, var(--display)); font-size: var(--group-size, 2rem); line-height: 1.1; color: var(--title, var(--ochre)); min-width: 0; overflow-wrap: anywhere; }
+.brand img { height: max(3.2rem, var(--group-size, 2rem)); width: auto; max-width: 40vw; object-fit: contain; }
+header.top { display: grid; justify-items: center; gap: .4rem; margin-bottom: 1.6rem; text-align: center; }
+.section-title { display: grid; gap: .9rem; justify-items: center; text-align: center; padding-block: 1rem; margin-bottom: 1.4rem; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.section-title p { margin: 0; color: var(--muted); }
+.lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .8rem; margin-bottom: 2.2rem; }
+.list-btn { display: grid; gap: .15rem; padding: 1rem 1.1rem; border-radius: 10px; background: var(--accent); color: var(--bg); text-decoration: none; }
+.list-btn:hover { filter: brightness(1.08); }
+.list-btn strong { font-family: var(--display); font-size: 1.35rem; line-height: 1.15; }
+.list-btn span { font-size: .9rem; opacity: .85; }
+header.top p { margin: 0; color: var(--muted); max-width: 36rem; }
+.tools { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1rem; }
+.search { flex: 1 1 14rem; min-width: 0; font: inherit; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.search:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chip { font: inherit; font-size: .92rem; padding: .5rem .85rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.tags { gap: .4rem; }
+.tags .chip { font-size: .85rem; padding: .35rem .75rem; }
+.chip .n { opacity: .65; font-variant-numeric: tabular-nums; }
+.count { color: var(--muted); font-size: .9rem; margin: 0 0 .5rem; font-variant-numeric: tabular-nums; }
+ol.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+ol.list li { border-bottom: 1px solid var(--line); }
+ol.list a { display: grid; grid-template-columns: 2.2rem 1fr auto; gap: .5rem; align-items: baseline; padding: .75rem .25rem; color: inherit; text-decoration: none; }
+ol.list a:hover { background: var(--accent-soft); }
+.num { font-family: var(--mono); font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.name { font-family: var(--display); font-size: 1.2rem; font-weight: 500; min-width: 0; }
+.tag { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: .15rem .5rem; border-radius: 4px; white-space: nowrap; }
+.tag.none { color: var(--muted); background: transparent; font-weight: 500; text-transform: none; letter-spacing: 0; }
+h3.sub { font-family: var(--display); font-size: 1.3rem; margin: 2.5rem 0 .5rem; }
+h3.sub.first { margin-top: 0; }
+.empty { color: var(--muted); padding: 1rem .25rem; }
+
+/* Vista d'una peça */
+.back { display: inline-flex; gap: .4rem; align-items: center; color: var(--accent); text-decoration: none; font-weight: 500; margin-bottom: 1.2rem; }
+.piece-head { display: grid; gap: .4rem; margin-bottom: 1.2rem; }
+.size { display: flex; gap: .4rem; align-items: center; color: var(--muted); font-size: .9rem; }
+.size button { font: inherit; font-weight: 700; width: 2.4rem; height: 2.4rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1rem; overflow-x: auto; }
+.part + .part { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px dashed var(--line); }
+.part-label { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: .4rem; }
+.ln { font-family: var(--mono); font-weight: 500; font-size: var(--notes-size); line-height: 1.7; word-spacing: .15em; }
+.ln .hi { color: var(--accent); font-weight: 600; }
+.ln.alt { padding-left: .2rem; }
+.ln.alt .v { font-family: var(--body); font-size: .8em; font-weight: 700; color: var(--ochre); margin-right: .4rem; }
+.rep { display: inline-block; font-family: var(--body); font-weight: 700; font-size: .85rem; color: var(--ochre); border: 1.5px solid var(--ochre); border-radius: 4px; padding: 0 .4rem; margin-block: .2rem; }
+.legend { margin-top: 1rem; color: var(--muted); font-size: .9rem; display: grid; gap: .25rem; }
+.nonotes { background: var(--surface); border: 1px dashed var(--line); border-radius: 10px; padding: 1.5rem 1rem; color: var(--muted); }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.pager a { color: var(--accent); text-decoration: none; font-weight: 500; max-width: 48%; }
+footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+@media (prefers-reduced-motion: no-preference) { ol.list a { transition: background .15s; } }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+// ── Aplica la configuració (configuracio.js) ──
+const C = Object.assign({ nomGrup: "", titol: "Repertori", presentacio: "", logo: "", colorPrincipal: "#2c6a4c", colorSecundari: "#9a6b17", peu: "" }, window.CONFIG || {});
+document.documentElement.style.setProperty("--brand", C.colorPrincipal);
+document.documentElement.style.setProperty("--brand2", C.colorSecundari);
+document.title = [C.titol, C.nomGrup].filter(Boolean).join(" · ");
+if (C.logo) document.getElementById("favicon").href = C.logo;
+if (C.colorTitol) document.documentElement.style.setProperty("--title", C.colorTitol);
+if (C.midaNom) document.documentElement.style.setProperty("--group-size", C.midaNom + "rem");
+if (C.tipografiaNom) {
+  const f = document.createElement("style");
+  f.textContent = `@font-face { font-family: "LletraGrup"; src: url("${encodeURI(C.tipografiaNom)}"); font-display: swap; }`;
+  document.head.appendChild(f);
+  document.documentElement.style.setProperty("--group-font", `"LletraGrup", var(--display)`);
+}
+if (C.colorFons) {
+  // Fons fix: tria lletra clara o fosca segons la lluminositat del color
+  const ctx = document.createElement("canvas").getContext("2d");
+  ctx.fillStyle = C.colorFons; ctx.fillRect(0, 0, 1, 1);
+  const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
+  const dark = (0.299 * r + 0.587 * g + 0.114 * b) < 140;
+  const root = document.documentElement;
+  root.dataset.theme = dark ? "dark" : "light";
+  root.style.setProperty("--bg", C.colorFons);
+  root.style.setProperty("--surface", `color-mix(in srgb, ${C.colorFons} ${dark ? 92 : 60}%, #ffffff ${dark ? 8 : 40}%)`);
+  root.style.setProperty("--line", `color-mix(in srgb, ${C.colorFons} 78%, var(--ink))`);
+  root.style.setProperty("--muted", `color-mix(in srgb, ${C.colorFons} 35%, var(--ink))`);
+  root.style.setProperty("--accent-soft", `color-mix(in srgb, var(--brand) 22%, ${C.colorFons})`);
+}
+
+const slug = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const textLines = t => String(t || "").split(/\r?\n/).map(l => l.trim()).filter(l => !l.startsWith("//"));
+
+// ── Llegeix repertori.js: cada «# Títol» comença una llista ──
+const LISTS = [];
+const TAGS = {};
+for (const l of textLines(window.REPERTORI_TEXT)) {
+  if (l.startsWith("#")) LISTS.push({ title: l.replace(/^#+\s*/, ""), songs: [] });
+  else if (l && LISTS.length) {
+    // «Nom | Etiqueta, Etiqueta» → la cançó i les seves etiquetes
+    const [name, tags = ""] = l.split("|").map(x => x.trim());
+    LISTS.at(-1).songs.push(name);
+    const set = TAGS[slug(name)] ||= new Set();
+    tags.split(",").map(x => x.trim()).filter(Boolean).forEach(x => set.add(x));
+  }
+}
+LISTS.forEach(L => L.id = slug(L.title));
+const RECENT = LISTS.find(L => L.id.includes("darreres"));
+const MAIN_LISTS = LISTS.filter(L => L !== RECENT);
+const FULL = MAIN_LISTS.find(L => L.id.includes("complet")) || MAIN_LISTS[0];
+
+// ── Llegeix notes.js: «== Nom» comença una cançó; una línia buida separa parts ──
+const NOTES = {};
+let cur = null;
+for (const l of textLines(window.NOTES_TEXT)) {
+  if (l.startsWith("==")) { cur = { title: l.replace(/^=+\s*/, ""), parts: [[]] }; NOTES[slug(cur.title)] = cur; }
+  else if (!cur) continue;
+  else if (!l) { if (cur.parts.at(-1).length) cur.parts.push([]); }
+  else cur.parts.at(-1).push(l.replace(/'/g, "’"));
+}
+Object.values(NOTES).forEach(n => n.parts = n.parts.filter(p => p.length));
+
+// Peces amb notes que no surten a cap llista
+const listed = new Set(LISTS.flatMap(L => L.songs.map(slug)));
+const EXTRA = Object.values(NOTES).filter(n => !listed.has(slug(n.title))).map(n => n.title);
+
+const SONGS = {};
+[...LISTS.flatMap(L => L.songs), ...EXTRA].forEach(t => { if (!SONGS[slug(t)]) SONGS[slug(t)] = t; });
+const LIST_BY_ID = Object.fromEntries(LISTS.map(L => [L.id, L]));
+const hasNotes = t => !!NOTES[slug(t)];
+const tagsOf = t => [...(TAGS[slug(t)] || [])];
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const state = { q: "", tag: "", onlyNotes: store.get("onlyNotes", false), size: store.get("size", 1.25), from: FULL };
+document.documentElement.style.setProperty("--notes-size", state.size + "rem");
+
+const app = document.getElementById("app");
+const peces = n => `${n} ${n === 1 ? "peça" : "peces"}`;
+const header = () => `
+  <header class="top">
+    <a class="brand" href="#">${C.logo ? `<img src="${esc(C.logo)}" alt="Logo de ${esc(C.nomGrup)}" onerror="this.remove()">` : ""}<span class="group-name">${esc(C.nomGrup)}</span></a>
+    ${C.presentacio ? `<p>${esc(C.presentacio)}</p>` : ""}
+  </header>`;
+const footer = () => C.peu ? `<footer>${esc(C.peu)}</footer>` : "";
+const row = (t, n) => `<li><a href="#${slug(t)}"><span class="num">${n}</span><span class="name">${esc(t)}</span>${hasNotes(t) ? '<span class="tag">Notes</span>' : '<span class="tag none">sense notes</span>'}</a></li>`;
+
+function renderHome() {
+  state.from = FULL;
+  app.innerHTML = `
+    ${header()}
+    <div class="section-title"><h1>${esc(C.titol)}</h1></div>
+    <nav class="lists">${MAIN_LISTS.map(L => `<a class="list-btn" href="#${L.id}"><strong>${esc(L.title)}</strong><span>${peces(L.songs.length)} →</span></a>`).join("")}</nav>
+    ${RECENT ? `
+      <h3 class="sub first">${esc(RECENT.title)}</h3>
+      ${RECENT.songs.length ? `<ol class="list">${RECENT.songs.map(t => row(t, "·")).join("")}</ol>`
+        : `<p class="empty">Encara no hi ha cap cançó en aquesta llista. S’afegeixen a repertori.js, davall de «# ${esc(RECENT.title)}».</p>`}` : ""}
+    ${footer()}`;
+}
+
+function renderList(L) {
+  state.from = L;
+  const q = fold(state.q.trim());
+  const listTags = [...new Set(L.songs.flatMap(tagsOf))].sort((a, b) => a.localeCompare(b, "ca"));
+  if (!listTags.includes(state.tag)) state.tag = "";
+  const match = t => (!q || fold(t).includes(q)) && (!state.onlyNotes || hasNotes(t)) && (!state.tag || tagsOf(t).includes(state.tag));
+  const items = L.songs.map((t, i) => ({ t, i })).filter(({ t }) => match(t));
+  const extra = L === FULL ? EXTRA.filter(match) : [];
+  const withNotes = L.songs.filter(hasNotes).length;
+
+  app.innerHTML = `
+    ${header()}
+    <a class="back" href="#">← Inici</a>
+    <div class="section-title"><h1>${esc(L.title)}</h1><p>${peces(L.songs.length)}. ${withNotes} tenen les notes escrites.</p></div>
+    ${L.songs.length ? `
+    <div class="tools">
+      <input id="q" class="search" type="search" placeholder="Cerca una peça…" aria-label="Cerca una peça" value="${esc(state.q)}">
+      <button id="only" class="chip" aria-pressed="${state.onlyNotes}">Només amb notes</button>
+    </div>
+    ${listTags.length ? `<div class="tools tags" role="group" aria-label="Filtra per tipus">
+      <button class="chip" data-tag="" aria-pressed="${!state.tag}">Totes</button>
+      ${listTags.map(g => `<button class="chip" data-tag="${esc(g)}" aria-pressed="${state.tag === g}">${esc(g)} <span class="n">${L.songs.filter(t => tagsOf(t).includes(g)).length}</span></button>`).join("")}
+    </div>` : ""}
+    <p class="count">${items.length} de ${L.songs.length}</p>
+    ${items.length ? `<ol class="list">${items.map(({ t, i }) => row(t, String(i + 1).padStart(2, "0"))).join("")}</ol>` : `<p class="empty">Cap peça coincideix amb «${esc(state.q)}».</p>`}
+    ` : `<p class="empty">Aquesta llista encara és buida. S’hi afegeixen cançons a repertori.js, davall de «# ${esc(L.title)}».</p>`}
+    ${extra.length ? `<h3 class="sub">Altres peces amb notes</h3><ol class="list">${extra.map(t => row(t, "·")).join("")}</ol>` : ""}
+    ${footer()}`;
+
+  document.getElementById("q")?.addEventListener("input", e => { state.q = e.target.value; renderList(L); const el = document.getElementById("q"); el.focus(); el.setSelectionRange(el.value.length, el.value.length); });
+  app.querySelectorAll("[data-tag]").forEach(b => b.addEventListener("click", () => { state.tag = b.dataset.tag; renderList(L); }));
+  document.getElementById("only")?.addEventListener("click", () => { state.onlyNotes = !state.onlyNotes; store.set("onlyNotes", state.onlyNotes); renderList(L); });
+}
+
+function line(l) {
+  if (/^x\s*2$/i.test(l)) return `<div><span class="rep" title="Es repeteix">× 2</span></div>`;
+  const v = l.match(/^\((\d)\)\s*(.*)$/);
+  const notes = s => esc(s).replace(/(\S+’)/g, '<span class="hi">$1</span>');
+  if (v) return `<div class="ln alt"><span class="v">${v[1]}a volta</span>${notes(v[2])}</div>`;
+  return `<div class="ln">${notes(l)}</div>`;
+}
+
+function renderPiece(t) {
+  const parts = NOTES[slug(t)]?.parts;
+  // Navegació dins la llista d'on venim (o el repertori complet)
+  const L = state.from && state.from.songs.some(s => slug(s) === slug(t)) ? state.from : (MAIN_LISTS.find(M => M.songs.some(s => slug(s) === slug(t))) || null);
+  const order = L ? L.songs : EXTRA;
+  const idx = order.findIndex(s => slug(s) === slug(t));
+  const prev = order[idx - 1], next = order[idx + 1];
+  app.innerHTML = `
+    <a class="back" href="#${L ? L.id : FULL ? FULL.id : ""}">← ${esc(L ? L.title : FULL ? FULL.title : "Inici")}</a>
+    <div class="piece-head">
+      <span class="eyebrow">${L ? `Peça ${idx + 1} de ${L.songs.length}` : "Altres peces amb notes"}</span>
+      <h2>${esc(t)}</h2>
+    </div>
+    ${parts && parts.length ? `
+      <div class="tools"><div class="size"><span>Mida de les notes</span>
+        <button id="minus" aria-label="Lletra més petita">A−</button><button id="plus" aria-label="Lletra més grossa">A+</button></div></div>
+      <div class="sheet">${parts.map((p, i) => `<div class="part">${parts.length > 1 ? `<div class="part-label">Part ${String.fromCharCode(65 + i)}</div>` : ""}${p.map(line).join("")}</div>`).join("")}</div>
+      <div class="legend"><span><span class="rep">× 2</span> es repeteix</span><span><span class="ln" style="font-size:1rem"><span class="hi">DO’</span></span> octava de dalt</span></div>`
+    : `<div class="nonotes">Aquesta peça encara no té les notes escrites a la web.</div>`}
+    <nav class="pager">
+      ${prev ? `<a href="#${slug(prev)}">← ${esc(prev)}</a>` : "<span></span>"}
+      ${next ? `<a href="#${slug(next)}" style="text-align:right">${esc(next)} →</a>` : ""}
+    </nav>`;
+  const resize = d => { state.size = Math.min(2.6, Math.max(0.9, +(state.size + d).toFixed(2))); store.set("size", state.size); document.documentElement.style.setProperty("--notes-size", state.size + "rem"); };
+  document.getElementById("minus")?.addEventListener("click", () => resize(-0.15));
+  document.getElementById("plus")?.addEventListener("click", () => resize(0.15));
+  // Manté la pantalla encesa mentre es toca, si el navegador ho permet
+  try { navigator.wakeLock?.request("screen").catch(() => {}); } catch {}
+}
+
+function route() {
+  const h = location.hash.slice(1);
+  if (LIST_BY_ID[h] && LIST_BY_ID[h] !== RECENT) { if (state.from !== LIST_BY_ID[h]) { state.q = ""; state.tag = ""; } renderList(LIST_BY_ID[h]); }
+  else if (SONGS[h]) renderPiece(SONGS[h]);
+  else renderHome();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
