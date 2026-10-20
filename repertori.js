@@ -18,8 +18,6 @@
 
 var REPERTORI_TEXT = `
 
-# Darreres cançons afegides
-
 
 # Repertori complet
 
@@ -27,26 +25,26 @@ La Colombina
 Bolero de Santa Maria | Bolero
 Jota de Sencelles | Jota
 Es Repartiment
-Ball de l’Ós
+Ball de l’Ós | Tradicional catalana
 L’Oferta des Homes i ses Dones
 Bolero de Valldemossa | Bolero
-Dharma
+Dharma | Popular
 Ses Porgueres
-Sa Calera
-Coti X Coti
+Sa Calera | Tradicional eivissenca
+Coti X Coti | Popular
 Bolero de Pòrtol | Bolero
 El Bon Jesús
-Plou i Fa Sol / No En Volem Cap
+Plou i Fa Sol / No En Volem Cap | Tradicional mallorquina, Tradicional catalana
 Bolero de ses Dues Voltes | Bolero
-Sa Patxanguera
-Per Tocar Caminant II
-Bourré
+Sa Patxanguera | Cercavila
+Per Tocar Caminant II | Cercavila
+Bourrée | Occitana
 Es Pineros
 Dança de la Mort
 Arkudanza
 Mestre Guillemet
 Padrí Pep
-Jo i un Pastor
+Jo i un Pastor | Tradicional mallorquina
 Jota de Muro I | Jota
 Jota de Muro III | Jota
 Per Anar de Copes

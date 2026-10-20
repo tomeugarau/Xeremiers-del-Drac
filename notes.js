@@ -26,107 +26,162 @@ D R M M M M R M F
 F O F M D M R S R D 
 
 == La Colombina
-R L R L O F M R
-F M F R F M F R
-L L O F M R
-L L, L L L S' D' R' 
-L L L, L L L O F M
-O O O O L R
-L L L R L L L L R R
-M M F F O F M R M R
+Re la re la sol fa mi re 
+Fa mi fa re fa mi fa re 
+La la sol fa mi re 
+La la, la la la si’ do’ re la
+La la la la la sol fa mi
+Sol sol sol sol la re
+La la la re, la la la la 
+Re re mi mi fa fa sol 
+Fa mi re mi re
 
 == Dança Basca
-x2
-SOL SOL FA MI MI RE MI FA RE DO
+Sol sol fa mi mi
+Re mi  fa re mi do
+Sol sol fa mi mi 
+Re mi fa re do
 
-x2
-RE RE RE RE RE SOL FA MI RE DO
+Re re re re re
+Sol fa mi re mi do
+Re re re re re 
+Sol fa mi re do
 
 == Sa Patxanguera
-MI MI RE DO, RE MI RE DO MI MI
-DO DO RE MI MI RE MI RE DO DO
+Mi mi re do re mi re do mi mi
+Do do re mi mi mi re mi re do do
+Sol sol sol sol sol sol la si la sol sol sol
+Mi do re mi mi mi re mi re do do
 
-SOL SOL SOL SOL SOL SOL LA SI LA SOL SOL SOL
-MI DO RE MI MI MI RE MI RE DO DO
+Do’ sol do’ sol do’ sol la sol fa mi fa la sol
+Do sol do sol dol sol la sol fa mi re do
 
-DO’ SOL, DO’ SOL, DO’ SOL LA SOL FA MI FA LA SOL
-DO’ SOL, DO’ SOL, DO’ SOL LA SOL FA MI RE DO
+Mi re mi fa sol la fa la sol fa mi re sol mi do
+Mi re mi fa sol la fa sol sol sol la sol fa mi re do
 
-MI RE MI FA SOL LA FA LA SOL FA MI RE SOL MI DO
-MI RE MI FA SOL LA FA SOL SOL SOL LA SOL FA MI RE DO
+== Bourrée
+Re mi fa sol la fa re la fa re la
+La sol fa la sol mi
+Sol mi do sol mi do sol
+Sol fa mi fa re
 
-== Bourré
-RE MI FA SOL LA FA RE
-x2
-LA SOL FA LA SOL MI
-SOL MI DO SOL MI DO SOL
-SOL FA MI FA RE
-
-FA LA SOL FA MI FA RE
-x2
-FA LA SOL FA MI FA RE
-DO RE FA SOL FA FA MI RE
+Fa la sol fa mi fa re
+Do re fa mi re mi fa re
+Fa la sol fa mi fa re
+Do re fa sol fa fa mi re
 
 == Jo i un Pastor
-DO RE MI DO
-x2
-DO RE MI DO
-RE MI FA MI RE DO SOL
+Do re mi do
+Re mi fa mi re do do si
+Do re mi do
+Re mi fa mi re do sol
 
-MI FA SOL SOL FA MI LA
-x2
-MI FA SOL SOL FA MI LA LA
-SOL LA SOL FA MI RE DO
+Mi fa sol sol fa mi la 
+Re mi fa fa mi re sol
+Mi fa sol sol fa mi la la 
+Sol la sol fa mi re do
 
 == Plou i Fa Sol / No En Volem Cap
-MI DO RE MI
-x2
-MI DO RE MI
-FA RE RE DO RE DO
+Sol mi fa sol
+La fa fa fa la sol mi
+Sol mi fa sol
+La fa fa fa sol mi
 
-DO FA FA FA FA FA
-x2
-DO MI MI MI MI MI
-FA RE RE DO RE DO
+Do la la la la la 
+La la do’ si’ la la sol
+Mi sol sol sol sol sol
+La fa fa fa sol mi
 
 == Ball de l’Ós
-LA RE RE MI FA SOL LA RE RE
-x2
-LA RE LA RE LA RE RE
-MI FA FA MI DO RE RE
+La re, re mi fa sol la re re
+Re fa re fa mi do do
+La re la re la re re
+Mi fa fa mi do re re 
 
-RE FA RE FA MI DO DO
-x2
-FA SOL LA LA SOL FA FA MI
-RE FA MI DO RE RE
+Re fa re fa mi do do
+Re fa re fa sol
+Fa sol la la sol fa fa mi
+Re fa mi do re re
 
-== La Dama de Mallorca
-x2
-FA MI RE FA MI RE DO RE
+== Batalla PV
+La re re la mi mi la 
+fa la si do si la
+Re re la, fa la sol fa mi re 
+La do re la do si la, 
+la fa la do la
+La do re la do si la 
+la fa mi do re
 
-FA SOL LA LA SIb LA LA SOL
-x2
-FA MI RE FA LA LA SOL FA MI
-FA MI RE FA MI RE DO RE
+Re re re mi mi re mi fa do mi re re mi re fa mi fa mi 
+La fa mi re fa mi re, mi la mi la fa sol sol fa mi sol fa mi
+La sol fa mi re re
 
-== Peça sense títol
-x2
-DO MI FA SOL
-x2
-LA SOL FA MI RE
-(1) MI RE DO RE MI
-(2) MI RE DO SI DO
+== El Bon Jesús
+Sol mi do sol mi do
+La sol fa la sol fa mi re 
+Sol mi do sol mi do 
+La sol fa la sol fa mi re do 
 
-DO MI RE FA
-x2
-FA MI RE DO RE
-(1) MI RE DO RE MI
-(2) MI RE DO SI DO
+Sol do’ si’ la sol
+Mi re mi fa mi re mi fa sol mi do
+Sol do’ si’ la sol
+Mi re mi fa fa mi fa re do
 
-DO MI SOL DO’
-x2
-LA SOL FA MI RE
-(1) MI RE DO RE MI
-(2) MI RE DO SI DO
+== Dharma
+Do re mi fa sol x5
+Sol sol sol
+Do re mi fa sol
+La fa sol mi re do
+Do re mi fa sol 
+La fa sol mi ( fa sol fa mi )
+Sol fa mi re, mi do
+Re si do re
+Sol fa mi re, mi do
+Fa mi
+
+La re re la sol sol la fa fa la sol la sol
+La re re la sol sol la fa mi re
+
+Re do re do re do re mi fa mi 
+Re do re do re mi fa mi re
+
+== Sa Calera
+Sol mi sol la fa mi re fa mi do
+Sol mi sol la fa mi re do x2
+Do la sol la sol fa mi re fa mi do
+Do la sol  la sol fa re mi fa sol la
+La do’ la sol la sol fa mi re fa mi do
+Do la sol re mi fa sol la sol sol
+
+Do do mi si re do
+Do mi si re do
+Do la sol fa fa re mi fa sol la sol sol
+
+== Jota des Vermar
+Sol mi sol mi do, sol mi do do
+Sol mi sol mi fa fa re si si x2
+Sol mi sol mi fa mi re do
+
+Do do la la sol fa fa
+Do’ si do’ la sol sol fa mi mi
+Sol sol fa fa mi re re 
+Fa fa mi re mi fa sol sol
+(Fa fa fa mi re do)
+
+== L'Oferta des Homes i ses Dones
+do si do re mi fa re fa mi re do si do re do x2
+la’ sol fa mi re
+re do re, mi fa sol re, mi fa sol re, sol mi fa sol la’ sol fa mi 
+re do re, mi fa sol re, mi fa sol do x2
+
+do’ sí’ la sol fa sol la la, do’ si’ do la sol fa mi fa sol sol x2
+Sol sol sol sol sol fa la fa re re 
+mi do re si do re mi re do do sol sol sol sol sol fa la fa re re 
+mi do re si do re mi re do’
+
+mi do, fa mi fa sol fa fa 
+sol re, mi re mi fa mi mi 
+sol do, mi do re mi re re 
+mi do re si do re mi re do x2
 
 `;
