@@ -53,7 +53,7 @@ Mi mi mi mi fa re
 Fa fa fa re, fa fa fa fa re re
 La la do’ do’ si’, la sol fa mi re
 
-== Dança Basca
+== Dansa Basca
 Sol sol fa mi mi
 Re mi  fa re mi do
 Sol sol fa mi mi 

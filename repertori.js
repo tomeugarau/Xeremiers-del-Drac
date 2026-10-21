@@ -21,30 +21,30 @@ var REPERTORI_TEXT = `
 
 # Repertori complet
 
-La Colombina
+La Colombina | Medieval
 Bolero de Santa Maria | Bolero
 Jota de Sencelles | Jota
 Es Repartiment de Coques (Ses Vues)
-Ball de l’Ós | Tradicional catalana
-L’Oferta des Homes i ses Dones
+Ball de l’Ós | Popular catalana
+L’Oferta des Homes i ses Dones | Popular mallorquina
 Bolero de Valldemossa | Bolero
-Dharma | Popular
-Ses Porgueres
-Sa Calera | Tradicional eivissenca
-Coti X Coti | Popular
+Dharma | Música pop
+Ses Porqueres | Popular mallorquina
+Sa Calera | Popular eivissenca
+Coti X Coti | Música pop
 Bolero de Pòrtol | Bolero
-El Bon Jesús
-Plou i Fa Sol / No En Volem Cap | Tradicional mallorquina, Tradicional catalana
+El Bon Jesús | Popular mallorquina
+Plou i Fa Sol / No En Volem Cap | Popular mallorquina, Popular catalana
 Bolero de ses Dues Voltes | Bolero
-Sa Patxanguera | Cercavila
-Per Tocar Caminant II | Cercavila
+Sa Patxanguera
+Per Tocar Caminant II | Popular mallorquina
 Bourrée | Occitana
 Es Pineros
-Dança de la Mort
+Dança de la Mort | Medieval
 Arku Dantza
 Mestre Guillemet
 Padrí Pep
-Jo i un Pastor | Tradicional mallorquina
+Jo i un Pastor | Popular mallorquina
 Jota de Muro I | Jota
 Jota de Muro III | Jota
 Per Anar de Copes
@@ -54,10 +54,10 @@ Jota des Vermar | Jota
 Es Txeretxes
 Es Xubasquero
 S’Estruç
-Dança Basca
+Dansa Basca
 Jota des Llargos | Jota
 Jota des Curts | Jota
-Nans de Tarragona
+Nans de Tarragona | Popular catalana
 Cantiga
 
 
