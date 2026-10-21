@@ -40,7 +40,7 @@ Sa Patxanguera
 Per Tocar Caminant II | Popular mallorquina
 Bourrée | Occitana
 Es Pineros
-Dança de la Mort | Medieval
+Dansa de la Mort | Medieval
 Arku Dantza
 Mestre Guillemet
 Padrí Pep
