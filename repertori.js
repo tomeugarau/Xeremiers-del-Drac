@@ -24,7 +24,7 @@ var REPERTORI_TEXT = `
 La Colombina
 Bolero de Santa Maria | Bolero
 Jota de Sencelles | Jota
-Es Repartiment
+Es Repartiment de Coques (Ses Vues)
 Ball de l’Ós | Tradicional catalana
 L’Oferta des Homes i ses Dones
 Bolero de Valldemossa | Bolero
@@ -41,7 +41,7 @@ Per Tocar Caminant II | Cercavila
 Bourrée | Occitana
 Es Pineros
 Dança de la Mort
-Arkudanza
+Arku Dantza
 Mestre Guillemet
 Padrí Pep
 Jo i un Pastor | Tradicional mallorquina

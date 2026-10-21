@@ -155,17 +155,31 @@ LISTS.forEach(L => L.id = slug(L.title));
 const RECENT = LISTS.find(L => L.id.includes("darreres"));
 const MAIN_LISTS = LISTS.filter(L => L !== RECENT);
 const FULL = MAIN_LISTS.find(L => L.id.includes("complet")) || MAIN_LISTS[0];
+// El repertori complet surt per ordre alfabètic (ignora accents i majúscules)
+FULL?.songs.sort((a, b) => a.localeCompare(b, "ca", { sensitivity: "base" }));
 
-// ── Llegeix notes.js: «== Nom» comença una cançó; una línia buida separa parts ──
+// ── Llegeix notes.js: «== Nom» comença una cançó; «>> Nom» una veu nova;
+//    «-- Nom» o una línia buida comencen una part nova ──
 const NOTES = {};
 let cur = null;
+const newPart = (name = "") => { const ps = cur.voices.at(-1).parts; if (ps.at(-1).lines.length) ps.push({ name, lines: [] }); else ps.at(-1).name ||= name; };
 for (const l of textLines(window.NOTES_TEXT)) {
-  if (l.startsWith("==")) { cur = { title: l.replace(/^=+\s*/, ""), parts: [[]] }; NOTES[slug(cur.title)] = cur; }
+  if (l.startsWith("==")) { cur = { title: l.replace(/^=+\s*/, ""), voices: [{ name: "1a veu", parts: [{ name: "", lines: [] }] }] }; NOTES[slug(cur.title)] = cur; }
   else if (!cur) continue;
-  else if (!l) { if (cur.parts.at(-1).length) cur.parts.push([]); }
-  else cur.parts.at(-1).push(l.replace(/'/g, "’"));
+  else if (l.startsWith(">>")) {
+    const name = l.replace(/^>+\s*/, "") || `${cur.voices.length + 1}a veu`;
+    // Si encara no hi ha notes a la primera veu, només li canvia el nom
+    if (cur.voices.length === 1 && !cur.voices[0].parts.some(p => p.lines.length)) cur.voices[0].name = name;
+    else cur.voices.push({ name, parts: [{ name: "", lines: [] }] });
+  }
+  else if (l.startsWith("--")) newPart(l.replace(/^-+\s*/, ""));
+  else if (!l) newPart();
+  else cur.voices.at(-1).parts.at(-1).lines.push(l.replace(/'/g, "’"));
 }
-Object.values(NOTES).forEach(n => n.parts = n.parts.filter(p => p.length));
+Object.values(NOTES).forEach(n => {
+  n.voices.forEach(v => v.parts = v.parts.filter(p => p.lines.length));
+  n.voices = n.voices.filter(v => v.parts.length);
+});
 
 // Peces amb notes que no surten a cap llista
 const listed = new Set(LISTS.flatMap(L => L.songs.map(slug)));
@@ -174,14 +188,14 @@ const EXTRA = Object.values(NOTES).filter(n => !listed.has(slug(n.title))).map(n
 const SONGS = {};
 [...LISTS.flatMap(L => L.songs), ...EXTRA].forEach(t => { if (!SONGS[slug(t)]) SONGS[slug(t)] = t; });
 const LIST_BY_ID = Object.fromEntries(LISTS.map(L => [L.id, L]));
-const hasNotes = t => !!NOTES[slug(t)];
+const hasNotes = t => !!NOTES[slug(t)]?.voices.length;
 const tagsOf = t => [...(TAGS[slug(t)] || [])];
 
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
 };
-const state = { q: "", tag: "", onlyNotes: store.get("onlyNotes", false), size: store.get("size", 1.25), from: FULL };
+const state = { q: "", tag: "", onlyNotes: store.get("onlyNotes", false), size: store.get("size", 1.25), voice: store.get("voice", 0), from: FULL };
 document.documentElement.style.setProperty("--notes-size", state.size + "rem");
 
 const app = document.getElementById("app");
@@ -250,7 +264,10 @@ function line(l) {
 }
 
 function renderPiece(t) {
-  const parts = NOTES[slug(t)]?.parts;
+  const voices = NOTES[slug(t)]?.voices || [];
+  // Recorda la veu triada (qui toca la 2a veu la vol a totes les peces)
+  const vi = Math.min(state.voice, voices.length - 1);
+  const parts = voices[vi]?.parts;
   // Navegació dins la llista d'on venim (o el repertori complet)
   const L = state.from && state.from.songs.some(s => slug(s) === slug(t)) ? state.from : (MAIN_LISTS.find(M => M.songs.some(s => slug(s) === slug(t))) || null);
   const order = L ? L.songs : EXTRA;
@@ -265,7 +282,10 @@ function renderPiece(t) {
     ${parts && parts.length ? `
       <div class="tools"><div class="size"><span>Mida de les notes</span>
         <button id="minus" aria-label="Lletra més petita">A−</button><button id="plus" aria-label="Lletra més grossa">A+</button></div></div>
-      <div class="sheet">${parts.map((p, i) => `<div class="part">${parts.length > 1 ? `<div class="part-label">Part ${String.fromCharCode(65 + i)}</div>` : ""}${p.map(line).join("")}</div>`).join("")}</div>
+      ${voices.length > 1 ? `<div class="tools" role="group" aria-label="Tria la veu">
+        ${voices.map((v, i) => `<button class="chip" data-voice="${i}" aria-pressed="${i === vi}">${esc(v.name)}</button>`).join("")}
+      </div>` : ""}
+      <div class="sheet">${parts.map((p, i) => `<div class="part">${p.name || parts.length > 1 ? `<div class="part-label">${esc(p.name || `Part ${String.fromCharCode(65 + i)}`)}</div>` : ""}${p.lines.map(line).join("")}</div>`).join("")}</div>
       <div class="legend"><span><span class="rep">× 2</span> es repeteix</span><span><span class="ln" style="font-size:1rem"><span class="hi">DO’</span></span> octava de dalt</span></div>`
     : `<div class="nonotes">Aquesta peça encara no té les notes escrites a la web.</div>`}
     <nav class="pager">
@@ -275,6 +295,7 @@ function renderPiece(t) {
   const resize = d => { state.size = Math.min(2.6, Math.max(0.9, +(state.size + d).toFixed(2))); store.set("size", state.size); document.documentElement.style.setProperty("--notes-size", state.size + "rem"); };
   document.getElementById("minus")?.addEventListener("click", () => resize(-0.15));
   document.getElementById("plus")?.addEventListener("click", () => resize(0.15));
+  app.querySelectorAll("[data-voice]").forEach(b => b.addEventListener("click", () => { state.voice = +b.dataset.voice; store.set("voice", state.voice); renderPiece(t); }));
   // Manté la pantalla encesa mentre es toca, si el navegador ho permet
   try { navigator.wakeLock?.request("screen").catch(() => {}); } catch {}
 }

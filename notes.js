@@ -4,6 +4,13 @@
 //
 //  · Cada cançó comença amb == i el nom (el mateix que a repertori.js).
 //  · Una línia en blanc separa les parts de la cançó (Part A, Part B...).
+//  · Per posar nom a una part, escriu -- i el nom just abans:
+//        -- Introducció
+//        -- Tornada
+//  · Per afegir una segona veu, escriu >> i el nom de la veu
+//    davall de la primera; tot el que vengui després és d'aquesta veu:
+//        >> 2a veu
+//    A la web sortiran botons per triar quina veu vols veure.
 //  · x2 en una línia tota sola = es repeteix.
 //  · (1) i (2) al principi d'una línia = primera i segona volta.
 //  · Un apòstrof després d'una nota (DO’ o DO') = octava de dalt.
@@ -35,6 +42,16 @@ Sol sol sol sol la re
 La la la re, la la la la 
 Re re mi mi fa fa sol 
 Fa mi re mi re
+
+>> 2a veu
+Re fa sol fa mi re la la re 
+Re la re sol re la re sol
+Re re re fa sol la re
+Re fa, fa fa fa re la re re 
+Re re re re re re re fa
+Mi mi mi mi fa re
+Fa fa fa re, fa fa fa fa re re
+La la do’ do’ si’, la sol fa mi re
 
 == Dança Basca
 Sol sol fa mi mi
@@ -82,11 +99,13 @@ Mi fa sol sol fa mi la la
 Sol la sol fa mi re do
 
 == Plou i Fa Sol / No En Volem Cap
+-- No en volem cap...
 Sol mi fa sol
 La fa fa fa la sol mi
 Sol mi fa sol
 La fa fa fa sol mi
 
+-- Volem, volem, volem...
 Do la la la la la 
 La la do’ si’ la la sol
 Mi sol sol sol sol sol
@@ -126,6 +145,20 @@ Sol do’ si’ la sol
 Mi re mi fa mi re mi fa sol mi do
 Sol do’ si’ la sol
 Mi re mi fa fa mi fa re do
+
+>> 2a veu
+Do mi sol do 
+mi sol fa me re 
+fa mi re do si do
+Mi sol do 
+mi sol fa mi re 
+fa mi re do si do
+
+Mi mi mi mi do
+Mi mi mi mi do
+Re mi fa fa mi re
+Mi fa mi mi mi mi do
+
 
 == Dharma
 Do re mi fa sol x5
